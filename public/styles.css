@@ -1,0 +1,86 @@
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+    display: block;
+}
+
+body::before{
+    background-color: lightcoral;
+    background-image:url(images/bg-intro-desktop.png);
+}
+
+body::before{
+    content:'';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5rem;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 2px 2px 1px #999;
+
+}
+
+.signup-box{
+    width: 60%;
+}
+
+.login-box{
+    width: 40%;
+}
+
+.heading-primary{
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    margin-top: -2rem;
+}
+
+.form-field{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.form-field input{
+    padding: 1rem 0.5rem;
+    width: 100%;
+}
+
+::placeholder{
+    font-size: 1.6rem;
+}
+
+.col{
+    padding-bottom: 2rem;
+}
+
+.input-label{
+    font-size: 1.3rem;
+}

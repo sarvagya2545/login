@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost/accountDB", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb+srv://admin-don:test123@cluster0-jtkh3.mongodb.net/accountDB", {useNewUrlParser: true, useUnifiedTopology: true});
 
 const accountSchema = new mongoose.Schema({
     fname: String,
@@ -52,12 +52,33 @@ app.get("/login",function(req,res){
     res.sendFile( __dirname + "/login.html");
 });
 
+let reqStat
+
 app.post("/login", function(req,res){
     let userDetails = {
         username: req.body.usrname,
         password: req.body.pass
     }
-    let requestStatus = checkAccount(userDetails);
+    console.log(userDetails.password, userDetails.username);
+    
+    Account.findOne({usrname: userDetails.username, password: userDetails.password}, function(err, result){
+        
+        try{
+            if(!result){
+                res.redirect("/failure");
+            } else {
+                console.log("Correct");
+                res.redirect("/success-login");
+            }
+        }
+        catch(err){
+            alert("err");
+        } 
+
+    })
+    .catch(function(err){
+        console.log(err);
+    })
 });
 
 app.get("/success", function(req,res){
@@ -72,7 +93,12 @@ app.get("/failure", function(req,res){
     res.sendFile( __dirname + "/failure.html");
 });
 
+let port = process.env.PORT;
 
-app.listen(3000, function(){
+if(port == null || port == ""){
+    port = 3000;
+}
+
+app.listen(port, function(){
     console.log("Server started on port 3000.");
 });

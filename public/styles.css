@@ -84,3 +84,10 @@ body::before{
 .input-label{
     font-size: 1.3rem;
 }
+
+@media(max-width: 600px){
+    .signup-box,
+    .login-box{
+        width: 90%;
+    }
+}
